@@ -1,0 +1,7 @@
+[user]
+	name = Brandon Banks
+	email = b93banks@gmail.com
+[push]
+	default = simple
+[core]
+	excludesfile = ~/.gitignore
