@@ -5,7 +5,7 @@ export ZSH=/Users/banks/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-  ZSH_THEME="databanks"
+ZSH_THEME="databanks"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -67,12 +67,8 @@ DEFAULT_USER=`whoami`
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='vim'
- fi
+# Preferred editor
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -90,7 +86,6 @@ alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias art="php artisan"
 alias gfo="git fetch origin"
-alias gcod="git checkout develop"
 alias gcom="git checkout master"
 alias gcob="git checkout -b '$*'"
 alias glod="git pull origin develop"
@@ -116,8 +111,6 @@ alias dcl="docker-compose logs"
 alias cb="git rev-parse --abbrev-ref HEAD"
 alias gbdl="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
 
-alias gentux="cd ~/source/gentux"
-
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
@@ -132,10 +125,6 @@ dce() {
     docker-compose exec "$@" bash
 }
 
-homestead() {
-    ( cd ~/Homestead && vagrant $* )
-}
-
 export NVM_DIR="/Users/banks/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
@@ -145,15 +134,18 @@ export PATH="$HOME/npm/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/usr/local/share/dotnet:$PATH"
 
-# go
-export GOPATH=$HOME/source
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/banks/google-cloud-sdk/path.zsh.inc'
-
-# The next line enables shell command completion for gcloud.
-source '/Users/banks/google-cloud-sdk/completion.zsh.inc'
+# Laravel
+export PATH="$PATH:$HOME/.composer/vendor/bin"
+export PATH="$PATH:$HOME/dev/spark-installer"
 
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$(brew --prefix git)/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
