@@ -38,6 +38,9 @@ sudo nvram SystemAudioVolume=" "
 # defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
 
+# Turn on battery percentage
+defaults write com.apple.menuextra.battery ShowPercent YES
+
 # Disable smooth scrolling
 # (Uncomment if you’re on an older Mac that messes up the animation)
 #defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
