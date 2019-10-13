@@ -34,6 +34,9 @@ sudo nvram SystemAudioVolume=" "
 # Set sidebar icon size to medium
 #defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
+# Turn on battery percentage
+defaults write com.apple.menuextra.battery ShowPercent YES
+
 # Always show scrollbars
 # defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
