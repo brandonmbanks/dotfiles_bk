@@ -1,6 +1,15 @@
 # ssh dir
-mkdir $HOME/.ssh
+mkdir -p $HOME/.ssh
 chmod 0700 $HOME/.ssh
+
+# install homebrew
+which -s brew
+if [[ $? != 0 ]] ; then
+    # Install Homebrew
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+    : # homebrew already installed
+fi
 
 # installing packages
 brew update
@@ -12,27 +21,53 @@ brew install \
 
 xcode-select --install
 
+# download antigen
+[ -f ~/antigen.zsh ] || curl -L git.io/antigen > ~/antigen.zsh
+
 # git
 brew install git
-git config --global user.name "Brandon Banks"
-git config --global user.email "b93banks@gmail.com"
 git config --global color.ui auto
 
 # kubernetes
 brew cask install minikube
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+# download asdf if not exists
+[ -d ~/.asdf ] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 cd ~/.asdf
 git checkout "$(git describe --abbrev=0 --tags)"
-# reload shell
-zsh
+cd -
+if [ $(cat ~/.zshrc | grep -c "asdf") -eq 0 ];
+then
+    echo '\n# asdf' >> ~/.zshrc
+    echo '. $HOME/.asdf/asdf.sh' >> ~/.zshrc
+    echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
+    source ~/.zshrc > /dev/null 2>&1 # reload shell
+else
+    : # asdf sh completion already exists
+fi
 # install kubectl
 asdf plugin-add kubectl
 asdf install kubectl 1.14.1
-
-# python
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-pyenv install 3.7.3
+touch ~/.tool-versions
+echo "kubectl 1.14.1" > ~/.tool-versions
 
 # node
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+# download nvm if not exists
+[ -d "~/.nvm" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash && source ~/.zshrc > /dev/null 2>&1
 nvm install node
+
+# python
+# download pyenv if not exists
+[ -d ~/.pyenv ] || git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+if [ $(cat ~/.zshrc | grep -c "pyenv") -eq 0 ];
+then
+    echo '\n# pyenv' >> ~/.zshrc
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+    echo 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
+    source ~/.zshrc > /dev/null 2>&1 # reload shell
+else
+    : # pyenv sh completion already exists
+fi
+pyenv install 3.7.3
+exec zsh # reload shell
+
