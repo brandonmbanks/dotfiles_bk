@@ -40,7 +40,7 @@ then
     echo '\n# asdf' >> ~/.zshrc
     echo '. $HOME/.asdf/asdf.sh' >> ~/.zshrc
     echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
-    source ~/.zshrc > /dev/null # reload shell
+    source ~/.zshrc > /dev/null 2>&1 # reload shell
 else
     : # asdf sh completion already exists
 fi
@@ -52,13 +52,7 @@ echo "kubectl 1.14.1" > ~/.tool-versions
 
 # node
 # download nvm if not exists
-[ -d "~/.nvm" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
-if [ $(cat ~/.zshrc | grep -c "nvm") -eq 0 ];
-then
-    zsh  # reload shell
-else
-    : # nvm sh completion already exists
-fi
+[ -d "~/.nvm" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash && source ~/.zshrc > /dev/null 2>&1
 nvm install node
 
 # python
@@ -70,10 +64,10 @@ then
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
     echo 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
-    zsh  # reload shell
+    source ~/.zshrc > /dev/null 2>&1 # reload shell
 else
     : # pyenv sh completion already exists
 fi
 pyenv install 3.7.3
-zsh # reload shell
+exec zsh # reload shell
 
