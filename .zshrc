@@ -24,6 +24,8 @@ antigen apply
 # Load custom aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
 
+export PATH=/usr/local/bin:$PATH
+
 # asdf
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
