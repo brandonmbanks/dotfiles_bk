@@ -1,25 +1,27 @@
-source ~/antigen.zsh
+# load zgen
+source "${HOME}/.zgen/zgen.zsh"
 
-# Load oh-my-zsh's library
-antigen use oh-my-zsh
+# if the init script doesn't exist
+if ! zgen saved; then
+  echo "creating zgen save"
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-antigen bundle heroku
-antigen bundle pip
-antigen bundle lein
-antigen bundle command-not-found
-antigen bundle common-aliases
+  # specify plugins here
+  zgen oh-my-zsh
+  zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh plugins/pip
+  zgen oh-my-zsh plugins/common-aliases
+  zgen oh-my-zsh plugins/command-not-found
 
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search ./zsh-history-substring-search.zsh
+  # syntax highlighting bundles
+  zgen load zsh-users/zsh-syntax-highlighting
 
-# Load the theme.
-antigen theme https://github.com/brandonmbanks/databanks-prompt.git databanks
+  # load theme
+  zgen load brandonmbanks/databanks-zsh-theme databanks
 
-# Tell Antigen that you're done.
-antigen apply
+  # save all to init script
+  zgen save
+  zcompile ${ZDOTDIR:-${HOME}}/.zgen/init.zsh
+fi
 
 # Load custom aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
@@ -37,6 +39,4 @@ export NVM_DIR="$HOME/.nvm"
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+
