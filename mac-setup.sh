@@ -68,6 +68,7 @@ then
 else
     : # pyenv sh completion already exists
 fi
-pyenv install 3.7.3
+pyenv install 3.7.5
+pyenv global 3.7.5
 exec zsh # reload shell
 
