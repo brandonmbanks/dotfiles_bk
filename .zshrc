@@ -15,6 +15,9 @@ if ! zgen saved; then
   # syntax highlighting bundles
   zgen load zsh-users/zsh-syntax-highlighting
 
+  # auto update zgen and bundles
+  zgen load unixorn/autoupdate-zgen
+
   # load theme
   zgen load brandonmbanks/databanks-zsh-theme databanks
 
@@ -22,6 +25,8 @@ if ! zgen saved; then
   zgen save
   zcompile ${ZDOTDIR:-${HOME}}/.zgen/init.zsh
 fi
+
+export EDITOR='vim'
 
 # Load custom aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
