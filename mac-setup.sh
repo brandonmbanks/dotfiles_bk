@@ -22,7 +22,7 @@ brew install \
 xcode-select --install
 
 # download antigen
-[ -f ~/antigen.zsh ] || curl -L git.io/antigen > ~/antigen.zsh
+[ -d ~/.zgen ] || git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 # git
 brew install git
