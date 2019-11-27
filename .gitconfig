@@ -5,3 +5,6 @@
 	default = simple
 [core]
 	excludesfile = ~/.gitignore
+[color]
+	ui = on
+
