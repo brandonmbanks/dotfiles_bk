@@ -1,6 +1,8 @@
 alias c="clear"
 alias zshconfig="vim ~/.zshrc"
 
+alias lsa="ls -al"
+
 # git
 alias gfo="git fetch origin"
 alias gco='git checkout'
