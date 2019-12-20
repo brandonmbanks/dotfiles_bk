@@ -4,6 +4,7 @@ alias zshconfig="vim ~/.zshrc"
 # git
 alias gfo="git fetch origin"
 alias gco='git checkout'
+__git_complete gco _git_checkout
 alias gcom="git checkout master"
 alias gcb="git checkout -b"
 alias glod="git pull origin develop"
