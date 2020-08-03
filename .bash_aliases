@@ -1,12 +1,17 @@
+# general
 alias c="clear"
-alias zshconfig="vim ~/.zshrc"
-
 alias lsa="ls -al"
+alias python="python3"
+alias python2="python"
 
 # git
+gd() {
+    git diff --color=always "$@" | less -r
+}
+#alias gd='git --color=always diff | less -r'
 alias gfo="git fetch origin"
 alias gco='git checkout'
-__git_complete gco _git_checkout
+#__git_complete gco _git_checkout
 alias gcom="git checkout master"
 alias gcb="git checkout -b"
 alias glod="git pull origin develop"
@@ -22,9 +27,9 @@ gcaa() {
 }
 alias cb="git rev-parse --abbrev-ref HEAD"
 alias gbdl="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
-alias gd="git diff --color | less -R"
-alias ggpush='git push origin "$(git_current_branch)"'
-alias ggpull='git pull origin "$(git_current_branch)"'
+#alias gd="git diff --color | less -R"
+alias ggpush='git push origin "$(git_branch)"'
+alias ggpull='git pull origin "$(git_branch)"'
 alias gcmsg='git commit -m'
 
 # php

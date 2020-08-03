@@ -50,4 +50,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 export JUPYTER_PATH="${JUPYTER_PATH}:/Users/bsb8715/.pyenv/shims/python3"
+export REQUESTS_CA_BUNDLE=~/.cert-bundle.pem
 
