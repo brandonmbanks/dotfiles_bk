@@ -1,8 +1,6 @@
 # general
 alias c="clear"
 alias lsa="ls -al"
-alias python="python3"
-alias python2="python"
 
 # git
 gd() {
