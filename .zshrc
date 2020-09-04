@@ -7,6 +7,7 @@ if ! zgen saved; then
 
   # specify plugins here
   zgen oh-my-zsh
+  zgen oh-my-zsh plugins/z
   zgen oh-my-zsh plugins/git
   zgen oh-my-zsh plugins/pip
   zgen oh-my-zsh plugins/common-aliases
@@ -44,4 +45,10 @@ export NVM_DIR="$HOME/.nvm"
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+export JUPYTER_PATH="${JUPYTER_PATH}:/Users/bsb8715/.pyenv/shims/python3"
+export REQUESTS_CA_BUNDLE=~/.cert-bundle.pem
 
