@@ -1,6 +1,8 @@
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/go/bin:$PATH
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # default editor
 EDITOR='vim'
 
