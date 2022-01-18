@@ -10,7 +10,7 @@ gd() {
 alias gfo="git fetch origin"
 alias gco='git checkout'
 #__git_complete gco _git_checkout
-alias gcom="git checkout master"
+alias gcom="git checkout main"
 alias gcb="git checkout -b"
 alias glod="git pull origin develop"
 alias glr="git pull --rebase"
@@ -26,8 +26,8 @@ gcaa() {
 alias cb="git rev-parse --abbrev-ref HEAD"
 alias gbdl="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
 #alias gd="git diff --color | less -R"
-alias ggpush='git push origin "$(git_branch)"'
-alias ggpull='git pull origin "$(git_branch)"'
+alias gpush='git push origin "$(git_branch)"'
+alias gpull='git pull origin "$(git_branch)"'
 alias gcmsg='git commit -m'
 
 # php
@@ -50,8 +50,11 @@ dce() {
     docker-compose exec "$@" bash
 }
 
+# kubectl
+alias k="kubectl"
+
 # ip addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
+alias localip="ifconfig | grep inet"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
