@@ -1,5 +1,7 @@
 export PATH=/usr/local/bin:$PATH
+
 export PATH=/usr/local/go/bin:$PATH
+export GOPATH=$HOME/go
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
