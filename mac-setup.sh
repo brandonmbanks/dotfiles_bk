@@ -21,9 +21,6 @@ brew install \
 
 xcode-select --install
 
-# download antigen
-[ -d ~/.zgen ] || git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
-
 # git
 brew install git
 git config --global color.ui auto
@@ -35,12 +32,12 @@ brew cask install minikube
 cd ~/.asdf
 git checkout "$(git describe --abbrev=0 --tags)"
 cd -
-if [ $(cat ~/.zshrc | grep -c "asdf") -eq 0 ];
+if [ $(cat ~/.bashrc | grep -c "asdf") -eq 0 ];
 then
-    echo '\n# asdf' >> ~/.zshrc
-    echo '. $HOME/.asdf/asdf.sh' >> ~/.zshrc
-    echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.zshrc
-    source ~/.zshrc > /dev/null 2>&1 # reload shell
+    echo '\n# asdf' >> ~/.bashrc
+    echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+    echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
+    source ~/.bashrc > /dev/null 2>&1 # reload shell
 else
     : # asdf sh completion already exists
 fi
@@ -52,23 +49,23 @@ echo "kubectl 1.14.1" > ~/.tool-versions
 
 # node
 # download nvm if not exists
-[ -d "~/.nvm" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash && source ~/.zshrc > /dev/null 2>&1
+[ -d "~/.nvm" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash && source ~/..bashrc > /dev/null 2>&1
 nvm install node
 
 # python
 # download pyenv if not exists
 [ -d ~/.pyenv ] || git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-if [ $(cat ~/.zshrc | grep -c "pyenv") -eq 0 ];
+if [ $(cat ~/..bashrc | grep -c "pyenv") -eq 0 ];
 then
-    echo '\n# pyenv' >> ~/.zshrc
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-    echo 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc
-    source ~/.zshrc > /dev/null 2>&1 # reload shell
+    echo '\n# pyenv' >> ~/..bashrc
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/..bashrc
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/..bashrc
+    echo 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/..bashrc
+    source ~/..bashrc > /dev/null 2>&1 # reload shell
 else
     : # pyenv sh completion already exists
 fi
-pyenv install 3.7.5
-pyenv global 3.7.5
+pyenv install 3.10.2
+pyenv global 3.10.2
 exec zsh # reload shell
 

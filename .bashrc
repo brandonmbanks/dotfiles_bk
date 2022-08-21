@@ -23,4 +23,12 @@ HISTFILESIZE=2000
 # source aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
 
+alias ssconf="vim ~/.config/starship.toml"
+
+function set_win_title(){
+    echo -ne "\033]0; $(basename "$PWD") \007"
+}
+
+starship_precmd_user_func="set_win_title"
+
 eval "$(starship init bash)"
