@@ -26,10 +26,6 @@ HISTFILESIZE=2000
 CLICOLOR=1
 LSCOLORS=GxFxCxDxBxegedabagaced
 
-git_branch() {
-  git rev-parse --abbrev-ref HEAD 2> /dev/null
-}
-
 git_dirty() {
   if [[ -n $(git status --porcelain 2> /dev/null) ]]; then
     echo -e "*"

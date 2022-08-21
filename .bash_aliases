@@ -26,6 +26,11 @@ gcaa() {
     git add . -u
     git commit -m "$@"
 }
+
+git_branch() {
+  git rev-parse --abbrev-ref HEAD 2> /dev/null
+}
+
 alias cb="git rev-parse --abbrev-ref HEAD"
 alias gbdl="git for-each-ref --format '%(refname:short)' refs/heads | grep -v master | xargs git branch -D"
 alias gpush='git push origin "$(git_branch)"'
