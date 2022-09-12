@@ -1,5 +1,8 @@
 export PATH=/usr/local/bin:$PATH
 
+# brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # go
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
@@ -7,6 +10,10 @@ export GOPATH=$HOME/go
 
 # rust
 . "$HOME/.cargo/env"
+
+# asdf
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 

@@ -27,6 +27,16 @@ git config --global color.ui auto
 
 # kubernetes
 brew cask install minikube
+
+# setup bashrc
+mkdir -p ~/projects/personal
+git clone https:://github.com/brandonmbanks/dotfiles.git ~/projects/personal
+ln -s ~/projects/personal/dotfiles/.bashrc .
+ln -s ~/projects/personal/dotfiles/.bash_aliases .
+
+# rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 # download asdf if not exists
 [ -d ~/.asdf ] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 cd ~/.asdf
@@ -41,31 +51,20 @@ then
 else
     : # asdf sh completion already exists
 fi
+
 # install kubectl
 asdf plugin-add kubectl
-asdf install kubectl 1.14.1
-touch ~/.tool-versions
-echo "kubectl 1.14.1" > ~/.tool-versions
+asdf install kubectl latest
+asdf global kubectl latest
 
-# node
-# download nvm if not exists
-[ -d "~/.nvm" ] || curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash && source ~/..bashrc > /dev/null 2>&1
-nvm install node
+# install node
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install node latest
+asdf global node latest
 
-# python
-# download pyenv if not exists
-[ -d ~/.pyenv ] || git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-if [ $(cat ~/..bashrc | grep -c "pyenv") -eq 0 ];
-then
-    echo '\n# pyenv' >> ~/..bashrc
-    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/..bashrc
-    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/..bashrc
-    echo 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/..bashrc
-    source ~/..bashrc > /dev/null 2>&1 # reload shell
-else
-    : # pyenv sh completion already exists
-fi
-pyenv install 3.10.2
-pyenv global 3.10.2
-exec zsh # reload shell
+# install python
+asdf plugin add python
+asdf install python latest
+asdf global python latest
 
+exec bash # reload shell
