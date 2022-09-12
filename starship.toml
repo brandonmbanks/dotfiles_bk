@@ -31,3 +31,9 @@ $character"""
 [nodejs]
 disabled = true
 
+[directory]
+style = "yellow"
+
+[git_branch]
+style = "green"
+
