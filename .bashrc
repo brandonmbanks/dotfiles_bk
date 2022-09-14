@@ -4,8 +4,8 @@ export PATH=/usr/local/bin:$PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # go
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/go/bin
+export PATH=/usr/local/go/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
 export GOPATH=$HOME/go
 
 # rust
