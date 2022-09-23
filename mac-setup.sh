@@ -15,9 +15,9 @@ fi
 brew update
 
 brew install \
-  coreutils automake autoconf openssl \
+  bash coreutils automake autoconf openssl \
   libyaml readline libxslt libtool unixodbc \
-  unzip curl
+  unzip curl vim neovim
 
 xcode-select --install
 
@@ -25,14 +25,14 @@ xcode-select --install
 brew install git
 git config --global color.ui auto
 
-# kubernetes
-brew cask install minikube
-
 # setup bashrc
 mkdir -p ~/projects/personal
 git clone https:://github.com/brandonmbanks/dotfiles.git ~/projects/personal
+ln -s ~/projects/personal/dotfiles/.bash_profile .
 ln -s ~/projects/personal/dotfiles/.bashrc .
 ln -s ~/projects/personal/dotfiles/.bash_aliases .
+# ignore case in tab completion
+echo 'set completion-ignore-case On' | sudo tee -a /etc/inputrc
 
 # rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

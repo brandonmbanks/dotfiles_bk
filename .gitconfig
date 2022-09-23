@@ -5,6 +5,6 @@
 	default = simple
 [core]
 	excludesfile = ~/.gitignore
+	autocrlf = input
 [color]
 	ui = on
-
