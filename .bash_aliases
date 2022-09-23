@@ -4,6 +4,8 @@ alias lsa="ls -al"
 
 alias python="python3"
 
+alias vim="nvim"
+
 mkcd() {
   mkdir -p -- "$1" && cd -P "$1"
 }
@@ -67,3 +69,5 @@ alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[
 
 alias apt-up="sudo apt update && sudo apt upgrade"
 
+alias gauth="gcloud auth login --force && gcloud auth application-default login"
+alias gtoken="gcloud auth print-access-token | pbcopy"
