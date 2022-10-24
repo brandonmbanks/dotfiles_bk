@@ -17,7 +17,9 @@ brew update
 brew install \
   bash coreutils automake autoconf openssl \
   libyaml readline libxslt libtool unixodbc \
-  unzip curl vim neovim
+  unzip curl vim neovim fzf ripgrep fd
+
+$(brew --prefix)/opt/fzf/install
 
 xcode-select --install
 

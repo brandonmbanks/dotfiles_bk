@@ -18,14 +18,20 @@ export GOPATH=$HOME/go
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # default editor
-EDITOR='vim'
+EDITOR='nvim'
 
 # append to history
-shopt -s histappend
+export PROMPT_COMMAND='history -a'
 # history settings
 HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND . $HOME"
+export FZF_ALT_C_COMMAND="fd -t d --hidden . $HOME"
 
 # source aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"
