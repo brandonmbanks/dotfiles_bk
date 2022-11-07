@@ -17,7 +17,8 @@ brew update
 brew install \
   bash coreutils automake autoconf openssl \
   libyaml readline libxslt libtool unixodbc \
-  unzip curl vim neovim fzf ripgrep fd
+  unzip curl wget vim neovim \
+  fzf ripgrep fd git-delta
 
 $(brew --prefix)/opt/fzf/install
 

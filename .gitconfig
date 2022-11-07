@@ -8,3 +8,27 @@
 	autocrlf = input
 [color]
 	ui = on
+[core]
+    editor = nvim
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    light = false
+    line-numbers = true
+    side-by-side = true
+[diff]
+    colorMoved = default
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[merge]
+    conflictstyle = diff3
+[init]
+	defaultBranch = main
+[rerere]
+	enabled = true
+
