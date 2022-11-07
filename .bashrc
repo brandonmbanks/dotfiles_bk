@@ -1,4 +1,5 @@
 export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -15,6 +16,8 @@ export GOPATH=$HOME/go
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
+test -f ~/.git-completion.bash && . $_
+
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # default editor
@@ -30,8 +33,8 @@ HISTFILESIZE=2000
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND . $HOME"
-export FZF_ALT_C_COMMAND="fd -t d --hidden . $HOME"
+export FZF_CTRL_T_COMMAND="fd --type f --hidden --exclude .git . $HOME"
+export FZF_ALT_C_COMMAND="fd -t d --hidden --exclude $HOME/Library . $HOME"
 
 # source aliases
 [[ -s "$HOME/.bash_aliases" ]] && source "$HOME/.bash_aliases"

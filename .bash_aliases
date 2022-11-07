@@ -11,12 +11,10 @@ mkcd() {
 }
 
 # git
-gd() {
-    git diff --color=always "$@" | less -r
-}
+alias gd="git diff"
 alias gfo="git fetch origin"
 alias gco="git checkout"
-#__git_complete gco _git_checkout
+__git_complete gco _git_checkout
 alias gcom="git checkout main"
 alias gcb="git checkout -b"
 alias glr="git pull --rebase"
